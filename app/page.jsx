@@ -118,17 +118,17 @@ export default function Home() {
           <h2 className="mx-auto max-w-4xl font-display text-3xl font-bold text-slate-900 text-center mb-4">Why SpendWise?</h2>
           <ul className="mt-6 space-y-4 text-lg text-gray-700 ml-4 mb-4">
             <li className="flex items-start">
-            <svg class="flex-shrink-0 w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg className="flex-shrink-0 w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
             </svg>
             <span className="ml-3">Simple, intuitive design for all users</span></li>
             <li className="flex items-start"> 
-            <svg class="flex-shrink-0 w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg className="flex-shrink-0 w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
             </svg>
             <span className="ml-3">Keep all your finances in one place</span></li>
             <li className="flex items-start">
-            <svg class="flex-shrink-0 w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg className="flex-shrink-0 w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
             </svg>
             <span className="ml-3">Budget smarter with instant financial insights</span></li>
@@ -141,7 +141,7 @@ export default function Home() {
             <br></br>
             <span className="text-blue-600 dark:text-blue-400"> Get Started Today.</span>
           </p>
-          <div class="flex justify-center gap-4 mt-8 font-medium">
+          <div className="flex justify-center gap-4 mt-8 font-medium">
     <Link href="#"
       className="px-5 py-3 text-base leading-6 text-white bg-indigo-600 dark:bg-gray-800 rounded-md hover:bg-indigo-500 dark:hover:bg-gray-700 focus:outline-none focus:shadow-outline">
       Sign Up
