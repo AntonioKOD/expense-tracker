@@ -19,13 +19,13 @@ const handler = NextAuth({
                     where: {email: credentials.email},
                 })
                 if(!user){
-                    throw new Error("No user found with this email")
+                    return null
                 }
 
                 const isPasswordValid = await bcrypt.compare(credentials.password, user.password)
 
                 if(!isPasswordValid){
-                    throw new Error("Password is incorrect")
+                    return null
                 }
                 return user;
             }
@@ -37,7 +37,7 @@ const handler = NextAuth({
     },
     session: {
         strategy: "jwt",
-
+    
     }, 
     callbacks: {
         async jwt({token, user}){
