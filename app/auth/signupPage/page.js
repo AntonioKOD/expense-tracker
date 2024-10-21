@@ -27,6 +27,7 @@ export default function SignUp(){
             setError(error)
         }
     };
+    
 
     return(
         <div>
