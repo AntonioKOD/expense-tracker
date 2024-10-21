@@ -1,61 +1,55 @@
 import NextAuth from "next-auth";
-import CredentialsProvider from 'next-auth/providers/credentials';
-import bcrypt from 'bcryptjs';
+import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
 import { PrismaClient } from "@prisma/client";
 
-// Reuse Prisma client across requests
-let prisma;
-if (!global.prisma) {
-  global.prisma = new PrismaClient();
-}
-prisma = global.prisma;
+// Initialize Prisma Client
+const prisma = new PrismaClient();
 
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email", placeholder: "name@example.com" },
-        password: { label: 'Password', type: 'password' },
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        const { email, password } = credentials;
+
+        // Find user in the database by email
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
+          where: { email },
         });
 
         if (!user) {
-          return null; // Return null instead of throwing error
+          throw new Error("No user found with this email");
         }
 
-        const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
+        // Compare the provided password with the hashed password in the database
+        const isValidPassword = await bcrypt.compare(password, user.password);
 
-        if (!isPasswordValid) {
-          return null; // Return null for incorrect password
+        if (!isValidPassword) {
+          throw new Error("Invalid password");
         }
 
-        return user; // Return user object if valid credentials
-      }
-    })
+        // If authentication is successful, return the user object
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+        };
+      },
+    }),
   ],
   pages: {
-    signIn: "/auth/signin",
+    signIn: "/auth/login",  // Redirect to the login page if not authenticated
   },
   session: {
-    strategy: "jwt",
+    strategy: "jwt",  // Use JSON Web Tokens for session management
   },
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      session.user.id = token.id; // Ensure user ID is passed to session
-      return session;
-    }
-  },
-  secret: process.env.NEXTAUTH_SECRET, // Ensure secret is provided
-});
+  secret: process.env.NEXTAUTH_SECRET,  // Add a secret for NextAuth.js in your .env file
+};
 
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
