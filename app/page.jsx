@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 sm:mt-28 mt-20">
-        <Link href='/auth/signupPage' className="border rounded-2xl py-1 px-4 text-slate-500 text-sm mb-5 hover:scale-105 transition duration-300 ease-in-out ">Sign Up</Link>
+        <Link href='/auth/signup' className="border rounded-2xl py-1 px-4 text-slate-500 text-sm mb-5 hover:scale-105 transition duration-300 ease-in-out ">Sign Up</Link>
         <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-slate-900 sm:text-7xl ">
           Effortlesly manage your spending and achieve
           <span className="relative whitespace-nowrap text-blue-400">
