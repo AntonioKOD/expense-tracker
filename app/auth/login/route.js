@@ -1,7 +1,7 @@
 import {PrismaClient} from '@prisma/client'
 import bcrypt from "bcryptjs"
+import prisma from '@/prismaSetup';
 
-const prisma = new PrismaClient();
 
 export async function POST(req){
     try{
@@ -23,7 +23,7 @@ export async function POST(req){
         return new Response(JSON.stringify({error: 'Signup failed'}), {
             status: 500
         })
-        
+
 
     }
 }
