@@ -36,6 +36,7 @@ export default function Page(){
                     <label  className="text-black"htmlFor="password">Password</label>
                     <input className="border-4 border-blue-300 rounded-lg" type="password" onChange={(e)=> setPassword(e.target.value)}/>
                 </div>
+                <button type="submit">Submit</button>
             </form>
         </div>
     )
